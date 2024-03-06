@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <router-link to="/restaurnatcustomer">餐廳顧客</router-link>
+    <router-link to="/restaurnatreservation">餐廳訂位</router-link>
     <router-view />
 </template>
 

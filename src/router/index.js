@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory} from "vue-router"
-import RestaurantCustomer from "@/views/RestaurantCustomer.vue"
+import RestaurantReservation from "@/views/RestaurantReservation.vue"
 
 const routes = [
     {
-        // http//localhost/restaurantcustomer
-        path: "/restaurnatcustomer",
-        component: RestaurantCustomer
+        // http//localhost/restaurantreservtion
+        path: "/restaurnatreservation",
+        component: RestaurantReservation
     }
 ]
 
