@@ -4,7 +4,9 @@
 
 <template>
     <router-link to="/restaurnatreservation">餐廳訂位</router-link>
-    <router-view />
+    <div class="container">
+        <router-view />
+    </div>
 </template>
 
 <style scoped></style>

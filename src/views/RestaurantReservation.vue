@@ -2,9 +2,11 @@
 import { onMounted, ref } from "vue";
 
 const reservations = ref([]);
+const name = ref("");
+const phone = ref("");
 
 const loadReservations = async () => {
-    const response = await fetch("https://localhost:7245/api/RestaurantReservation");
+    const response = await fetch(`https://localhost:7245/api/RestaurantReservation?name=${name.value}&phone=${phone.value}`);
     const datas = await response.json();
 
     reservations.value = datas;
@@ -14,11 +16,24 @@ onMounted(() => {
     loadReservations();
 })
 
+const inputHandler = () => {
+    loadReservations();
+};
+
 </script>
 
 <template>
-
-    <table class="table table-bordered">
+    <div class="row mb-3">
+        <div class="col-6">
+        </div>
+        <div class="col-3">
+            <input type="search" placeholder="請輸入姓名" v-model="name" v-on:input="inputHandler">
+        </div>
+        <div class="col-3">
+            <input type="search" placeholder="請輸入電話" v-model="phone" v-on:input="inputHandler">
+        </div>
+    </div>
+    <table class="table">
         <thead>
             <tr>
                 <th>顧客編號</th>
