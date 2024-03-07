@@ -1,18 +1,49 @@
 <script setup>
-import { ref } from "vue";
-const reservations = ([
+import { onMounted, ref } from "vue";
+const reservations = ref({
     name: "",
     phone: "",
     email: "",
     date: "",
-    period: "",
-    count: "",
-    seat: ""
-]);
+    count: 0,
+    period_id: 0,
+    seat_Id: 0
+});
 
-const clickHandler = () => {
+const seats = ref([]);
 
+const periods = ref([]);
+
+const clickHandler = async () => {
+    const response = await fetch("https://localhost:7245/api/RestaurantReservations", {
+        body: reservations.value,
+        method: "POST"
+    });
+
+    const datas = await response.json
+    console.log(datas);
 };
+
+
+
+const loadSeats = async () => {
+    const response = await fetch("https://localhost:7245/api/RestaurantSeats");
+    const datas = await response.json();
+
+    seats.value = datas;
+};
+
+const loadPeriod = async () => {
+    const response = await fetch("https://localhost:7245/api/RestaurantPeriods");
+    const datas = await response.json();
+
+    periods.value = datas;
+};
+
+onMounted(() => {
+    loadSeats();
+    loadPeriod();
+});
 
 </script>
 
@@ -39,8 +70,8 @@ const clickHandler = () => {
             </div>
             <div class="col-6">
                 <label for="period" class="form-label">用餐時段：</label>
-                <select class="form-select">
-                    <option value="1">One</option>
+                <select class="form-select" v-model="reservations.id">
+                    <option v-for="period in periods" v-bind:key="period.id">{{ period.name }}</option>
                 </select>
             </div>
         </div>
@@ -51,8 +82,8 @@ const clickHandler = () => {
             </div>
             <div class="col-6">
                 <label for="seat" class="form-label">座位：</label>
-                <select class="form-select">
-                    <option value="1">One</option>
+                <select class="form-select" v-model="reservations.seat_Id">
+                    <option v-for="seat in seats" v-bind:key="seat.id">{{ seat.id }}號{{ seat.type }}</option>
                 </select>
             </div>
         </div>
