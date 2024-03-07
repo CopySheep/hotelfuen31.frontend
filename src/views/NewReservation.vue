@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-const reservations = ([
+const reservations = ({
     name: "",
     phone: "",
     email: "",
@@ -8,7 +8,7 @@ const reservations = ([
     period: "",
     count: "",
     seat: ""
-]);
+});
 
 const clickHandler = () => {
 
