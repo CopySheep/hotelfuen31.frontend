@@ -6,7 +6,7 @@ const name = ref("");
 const phone = ref("");
 
 const loadReservations = async () => {
-    const response = await fetch(`https://localhost:7245/api/RestaurantReservation?name=${name.value}&phone=${phone.value}`);
+    const response = await fetch(`https://localhost:7245/api/RestaurantReservations?name=${name.value}&phone=${phone.value}`);
     const datas = await response.json();
 
     reservations.value = datas;
